@@ -13,13 +13,14 @@ void interactive(char *buf, char *buf2, char **args)
 	int status, j, argcou, x;
 	size_t i;
 	pid_t child;
-	
+	extern char **environ;
+
 	while (1)
 		{
 			write(STDOUT_FILENO, buf2, 2);
 			x = read(STDIN_FILENO, buf, 1024);
 			if (x == 0)
-				return (0);
+				return;
 			if (buf[(x - 1)] == '\n')
 				buf[(x - 1)] = '\0';
 			argcou = argcount(buf);
@@ -58,6 +59,7 @@ int main (int ac, char **av, char **env)
 	char *buf, **args, *buf2 = "$ ";
 	extern char **environ;
 	parent = getpid();
+
 	buf = malloc(sizeof(char) * 1024);
 	if (ac == 1)
 	{
@@ -65,7 +67,7 @@ int main (int ac, char **av, char **env)
 	}
 	else
 	{
-		args = malloc(sizeof(char *) * (ac - 1);
+		args = malloc(sizeof(char *) * (ac - 1));
 		while(av[j])
 		{
 			args[i] = av[j];
