@@ -8,18 +8,13 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <stddef.h>
-int main (int ac, char **av, char **env)
+void interactive(char *buf, char *buf2, char **args)
 {
-	pid_t child, parent;
 	int status, j, argcou, x;
 	size_t i;
-	char *buf, **args, *buf2 = "$ ";
-	extern char **environ;
-	parent = getpid();
-	buf = malloc(sizeof(char) * 1024);
-	if (ac == 1)
-	{
-		while (1)
+	pid_t child;
+	
+	while (1)
 		{
 			write(STDOUT_FILENO, buf2, 2);
 			x = read(STDIN_FILENO, buf, 1024);
@@ -55,6 +50,30 @@ int main (int ac, char **av, char **env)
 				wait(&status);
 			}
 		}
+}
+int main (int ac, char **av, char **env)
+{
+	pid_t parent;
+	int i = 0, j = 1;
+	char *buf, **args, *buf2 = "$ ";
+	extern char **environ;
+	parent = getpid();
+	buf = malloc(sizeof(char) * 1024);
+	if (ac == 1)
+	{
+		interactive(buf, buf2, args);
+	}
+	else
+	{
+		args = malloc(sizeof(char *) * (ac - 1);
+		while(av[j])
+		{
+			args[i] = av[j];
+			i++;
+			j++;
+		}
+		buf = args[0];
+		execve(buf, args, environ);
 	}
 	return (0);
 }
