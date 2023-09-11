@@ -8,6 +8,28 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <stddef.h>
+void exo()
+{
+	child = fork();
+		if (child == 0)
+		{
+			if (y == 3)
+			{
+				chdir(args[1]);
+			}
+			else
+			{
+				chdir(buf6);
+				free(buf6);
+				execve(buf, args, env);
+			}
+		}
+		else
+		{
+			wait(&status);
+			chdir(buf5);
+		}
+}
 void interactive(char *buf, char *buf2, char **args, char **env)
 {
 	int status, j, argcou, x, y;
@@ -47,25 +69,6 @@ void interactive(char *buf, char *buf2, char **args, char **env)
 			argsmod(buf7);
 		}
 		args[j] = NULL;
-		child = fork();
-		if (child == 0)
-		{
-			if (y == 3)
-			{
-				chdir(args[1]);
-			}
-			else
-			{
-				chdir(buf6);
-				free(buf6);
-				execve(buf, args, env);
-			}
-		}
-		else
-		{
-			wait(&status);
-			chdir(buf5);
-		}
 	}
 }
 int main(int ac, char **av, char **env)
