@@ -1,19 +1,14 @@
-#include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
-#include <fcntl.h>
+#include <stdio.h>
 #include <string.h>
 int main()
 {
-	ssize_t i;
-	char buf[2] = "$ ", buf2[20];
+	char *ptr;
+	struct stat st;
 
-	while (1)
-	{
-		write(1, buf, 2);
-		i = read(0, buf2, 19);
-		write(1, buf, i);
-	}
+	ptr = getenv("PATH");
+	printf("%s\n", ptr);
 	return (0);
 }
