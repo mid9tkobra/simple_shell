@@ -1,17 +1,16 @@
+#include "shell.h"
 int argcount(char *buf)
 {
 	int i, count = 0;
+	char *tmp = NULL, *buf2 = NULL;
 
-	for (i = 0; buf[i] != '\0'; i++)
+	tmp = strdup(buf);
+	buf2 = strtok(tmp, " \t\n");
+	while (buf2)
 	{
-		if (buf[i] != ' ')
-		{
-			count++;
-			while (buf[i] != ' ' && buf[i + 1] != '\0')
-				i++;
-		}
-		while (buf[i] == ' ' && buf[i + 1] == ' ')
-			i++;
+		count++;
+		buf2 =  strtok(NULL, " \t\n");
 	}
+	free(tmp);
 	return (count);
 }

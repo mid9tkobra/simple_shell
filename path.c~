@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <stdio.h>
-int _check(char *buf, char buf6)
+int _check(char *buf)
 {
 	char buf2[1024], *buf3;
 	struct stat st;
@@ -34,7 +34,8 @@ int _check(char *buf, char buf6)
 		ch1 = stat(buf3, &st);
 		if (ch1 == 0)
 		{
-			strcpy(buf6, buf2);
+			strcpy(buf, buf3);
+			printf("buf3 : %s---buf : %s", buf3, buf);
 			free(buf3);
 			return (1);
 		}

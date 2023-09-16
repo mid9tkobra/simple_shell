@@ -3,11 +3,10 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <string.h>
-int main()
+#include <sys/wait.h>
+#include <fcntl.h>
+#include "shell.h"
+int main(int ac, char **av, char **env)
 {
-	char *ptr;
-
-	ptr = getenv("PATH");
-	printf("%s\n", ptr);
-	return (0);
+	return 0;
 }

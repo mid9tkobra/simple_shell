@@ -1,51 +1,10 @@
-#include "shell.h"
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <string.h>
-#include <sys/wait.h>
-#include <stddef.h>
-void interactive(char *buf, char *buf2, char **args, char **env)
+#include "shell.h
+void exo(char *buf, char **args, int y, char **env)
 {
-	int status, j, argcou, x, y;
-	size_t i;
 	pid_t child;
-	char buf3[1024], buf4[1024], buf5[1024], *buf6, *buf7;
-
-	while (1)
-	{
-		buf6 = malloc(sizeof(char) * 1024);
-		strcpy(buf5, getenv("PWD"));
-		write(STDOUT_FILENO, buf2, 2);
-		x = read(STDIN_FILENO, buf, 1024);
-		if (x == 0)
-			return;
-		if (buf[(x - 1)] == '\n')
-			buf[(x - 1)] = '\0';
-		argcou = argcount(buf);
-		strcpy(buf3, buf);
-		args = malloc((argcou + 1) * sizeof(char *));
-		strtok(buf, " ");
-		y = _check(buf, buf6);
-		if (!y)
-		{
-			free(args);
-			continue;
-		}
-		args[0] = malloc(sizeof(char) * (strlen(buf) + 1));
-		strcpy(args[0], buf);
-		strtok(buf3, " ");
-		for (j = 1; j < argcou; j++)
-		{
-			strcpy(buf4, strtok(NULL, " "));
-			args[j] = malloc(sizeof(char) * (strlen(buf4) + 1));
-			strcpy(args[j], buf4);
-		}
-		args[j] = NULL;
-		child = fork();
+	int st;
+ 
+	child = fork();
 		if (child == 0)
 		{
 			if (y == 3)
@@ -54,42 +13,78 @@ void interactive(char *buf, char *buf2, char **args, char **env)
 			}
 			else
 			{
-				chdir(buf6);
-				free(buf6);
 				execve(buf, args, env);
 			}
 		}
 		else
 		{
-			wait(&status);
-			chdir(buf5);
+			wait(&st);
+			free(buf);
 		}
+}
+void interactive(char *buf, char **args, char **env, char *av0)
+{
+	int status, j, argcou, y, in = 0, re = 0, cou = 0;
+	size_t i;
+	ssize_t x;
+	pid_t child;
+	char buf3[1024], buf4[1024], *buf7;
+
+	while (1)
+	{
+		buf = malloc(sizeof(char) * 1024);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
+		x = getline(&buf, &i, stdin);
+		while (buf[in] != '\0' && buf[in] != EOF)
+		{
+			if (buf[in] != ' ' && buf[in] != '	')
+				re = 1;
+			in++;
+		}
+		in = 0;
+		if (!re)
+			x = -1;
+		re = 0;
+		stdin->_flags &= ~-1;
+		if (x == -1)
+		{
+			if (isatty(STDIN_FILENO))
+				write(STDOUT_FILENO, "\n", 1);
+			return;
+		}
+		argcou = argcount(buf);
+		strcpy(buf3, buf);
+		args = malloc((argcou + 1) * sizeof(char *));
+		strtok(buf, " \t\n");
+		y = _check(buf);
+		if (!y)
+		{
+			free(args);
+			errhand(0, av0, buf, &cou);
+			continue;
+		}
+		strtok(buf3, " \t\n");
+		args[0] = malloc(sizeof(char) * (strlen(buf3) + 1));
+		strcpy(args[0], buf3);
+		for (j = 1; j < argcou; j++)
+		{
+			strcpy(buf4, strtok(NULL, " \t\n"));
+			args[j] = malloc(sizeof(char) * (strlen(buf4) + 1));
+			strcpy(args[j], buf4);
+			buf7 = args[j];
+			argsmod(buf7);
+		}
+		args[j] = NULL;
+		exo(buf, args, y, env);
 	}
 }
 int main(int ac, char **av, char **env)
 {
 	pid_t parent;
 	int i = 0, j = 1;
-	char *buf, **args, *buf2 = "$ ";
+	char *buf, **args;
 
-	parent = getpid();
-	buf = malloc(sizeof(char) * 1024);
-	if (ac == 1)
-	{
-		interactive(buf, buf2, args, env);
-	}
-	/*else
-	{
-
-		args = malloc(sizeof(char *) * (ac - 1));
-		while (av[j])
-		{
-			args[i] = av[j];
-			i++;
-			j++;
-		}
-		buf = args[0];
-		execve(buf, args, env);
-	}*/
+	interactive(buf, args, env, av[0]);
 	return (0);
 }
