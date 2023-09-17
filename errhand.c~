@@ -6,7 +6,7 @@ void errhand(int n, char *buf, char *buf2, int *cou)
 
 	err = malloc(sizeof(char) * 2048);
 	for (i = 0; i < 2048; i++)
-		err[i] = 0;
+		err[i] = 0
 	switch (n)
 	{
 		case 0:

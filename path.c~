@@ -9,14 +9,14 @@ int _check(char *buf, char **re)
 	ch3 = _strcmp(buf, buf4);
 	if (ch3 == 0)
 	{
-		_strcpy(buf3, buf);
+		_strcpy(buf3, buf));
 		*re = buf3;
 		return (3);
 	}
 	ch2 = stat(buf, &st);
 	if (ch2 == 0)
 	{
-		_strcpy(buf3, buf);
+		_strcpy(buf3, buf));
 		*re = buf3;
 		return (2);
 	}
