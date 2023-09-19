@@ -3,7 +3,6 @@
 *@n: the number to be printed
 *@buffer : local buffer on printf
 *@j : index of buffer
-*@count : number of charcters printed
 * Return: 1 if alphabet and 0 otherwise
 */
 void print_number(int n, char *buffer, int *j)

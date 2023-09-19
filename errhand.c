@@ -1,4 +1,12 @@
 #include "shell.h"
+/**
+*errhand - handle errors
+*@n : error code
+*@buf : argv[0]
+*@buf2 : command orderd by user
+*@cou : errors count
+*/
+
 void errhand(int n, char *buf, char *buf2, int *cou)
 {
 	char *err = NULL, *buf3 = ": ";
@@ -19,7 +27,7 @@ void errhand(int n, char *buf, char *buf2, int *cou)
 			_strcat(err, buf3);
 			_strcat(err, "not found");
 			_strcat(err, "\n");
-			write(STDOUT_FILENO, err, _strlen(err));
+			write(STDERR_FILENO, err, _strlen(err));
 			free(err);
 	}
 }

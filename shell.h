@@ -10,7 +10,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <stddef.h>
-
+extern char **environ;
 int argcount(char *buf);
 int _check(char *buf, char **re);
 void argsmod(char *buf);
@@ -22,4 +22,9 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 void free_ar(char **arr);
+char *_getenv(char *var);
+int built(int y, char ***args, char **buf, int *st, int *cou, char *av0);
+void penv(void);
+ssize_t _read(char **buf);
+int args_ar(int argcou, char **buf, char ***args);
 #endif
