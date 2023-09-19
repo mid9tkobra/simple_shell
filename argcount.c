@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
 * argcount - count args in a line
-*@buf : line
+*@buf : lines
 *Return: arguments count
 */
 int argcount(char *buf)
