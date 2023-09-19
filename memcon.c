@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-*free_ar - free a 2D array
+*free_ar - free 2D array
 *@arr : array to be freed
 *Return: nothing
 */
