@@ -4,7 +4,7 @@
 *@n : error code
 *@buf : argv[0]
 *@buf2 : command orderd by user
-*@cou : errors count
+*@cou : error count
 */
 
 void errhand(int n, char *buf, char *buf2, int *cou)
