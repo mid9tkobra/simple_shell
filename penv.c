@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-*penv - print enviroment
+*penv - prints enviroment
 *Return: nothing
 */
 
