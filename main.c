@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
 *spfl - remove heading space from input
-*@buf : buffer containing input
+*@buf : buffer containing the input
 *Return: nothing
 */
 void spfl(char **buf)
