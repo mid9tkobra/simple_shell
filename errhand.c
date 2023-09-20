@@ -10,7 +10,7 @@
 void errhand(int n, char *buf, char *buf2, int *cou)
 {
 	char *err = NULL, *buf3 = ": ";
-	int ind = _strlen(buf) + 2, i;
+	int ind = _strlen(buf) + 2, i, x;
 
 	err = malloc(sizeof(char) * 2048);
 	for (i = 0; i < 2048; i++)
@@ -18,7 +18,6 @@ void errhand(int n, char *buf, char *buf2, int *cou)
 	switch (n)
 	{
 		case 0:
-			(*cou)++;
 			_strcat(err, buf);
 			_strcat(err, buf3);
 			print_number(*cou, err, &ind);
@@ -28,6 +27,22 @@ void errhand(int n, char *buf, char *buf2, int *cou)
 			_strcat(err, "not found");
 			_strcat(err, "\n");
 			write(STDERR_FILENO, err, _strlen(err));
+			(*cou)++;
 			free(err);
+			break;
+		case 1:
+			_strcat(err, buf);
+			_strcat(err, ": ");
+			x = _strlen(err);
+			print_number(*cou, err, &x);
+			_strcat(err, ": ");
+			_strcat(err, "cd");
+			_strcat(err, ": ");
+			_strcat(err, "can't cd to ");
+			_strcat(err, buf2);
+			_strcat(err, "\n");
+			write(STDERR_FILENO, err, _strlen(err));
+			free(err);
+			(*cou)++;
 	}
 }

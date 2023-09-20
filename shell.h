@@ -30,4 +30,6 @@ int args_ar(int argcou, char **buf, char ***args);
 int _atoi(char *s);
 int _isdigit(char *buf);
 void exat(int *st, char *av0, char *buf2, int *cou);
+ssize_t _getline(char **buf, size_t *n, FILE *stream);
+void cd1(void);
 #endif

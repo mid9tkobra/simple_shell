@@ -96,10 +96,6 @@ int start(char **env, char *av0, int *st)
 		if (args_ar(argcou, &buf, &args) == 0)
 			continue;
 		y = _check(args[0], &buf2);
-		if (_strcmp(args[0], "setenv") == 0)
-			y = 6;
-		if (_strcmp(args[0], "unsetenv") == 0)
-			y = 7;
 		free(buf);
 		buf = NULL;
 		builtv = built(y, &args, &buf2, st, &cou, av0);

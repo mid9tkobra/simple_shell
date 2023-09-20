@@ -57,6 +57,8 @@ int _strlen(char *s)
 	char com, *h;
 	int counter;
 
+	if (s == NULL)
+		return (0);
 	counter = 0;
 	h = s;
 	com = *h;
