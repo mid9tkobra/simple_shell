@@ -60,7 +60,7 @@ int _check(char *buf, char **re)
 	char *buf3, *buf4 = "cd";
 	char  ext[5] = "exit", envo[4] = "env";
 	struct stat st;
-	int ch2, ch3, count = 0;
+	int ch2, ch3;
 
 	if (_strcmp(buf, envo) == 0)
 		return (5);

@@ -6,8 +6,10 @@
 */
 int argcount(char *buf)
 {
-	int i, count = 0;
-	char *tmp = NULL, *buf2 = NULL, *buf3 = " \t\n";
+	int count = 0;
+	char *tmp = NULL;
+	char *buf2 = NULL;
+	char *buf3 = " \t\n";
 
 	tmp = _strdup(buf);
 	buf2 = strtok(tmp, buf3);

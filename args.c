@@ -8,7 +8,7 @@
 */
 int args_ar(int argcou, char **buf, char ***args)
 {
-	char *buf7 = NULL, buf4[2048];
+	char buf4[2048];
 	int j;
 
 	*args = malloc((argcou + 1) * sizeof(char *));

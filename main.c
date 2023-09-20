@@ -31,15 +31,14 @@ void spfl(char **buf)
 *exo - execute command in a child process
 *@buf : buffer containing command
 *@args : list of arguments
-*@y : code for command type
 *@env : enviroment variables
 *@sta : exit status of execution
 *Return: nothing
 */
-void exo(char **buf, char **args, int y, char **env, int *sta)
+void exo(char **buf, char **args, char **env, int *sta)
 {
 	pid_t child;
-	int st, i;
+	int st;
 
 	child = fork();
 	if (child == 0)
@@ -76,12 +75,9 @@ void exo(char **buf, char **args, int y, char **env, int *sta)
 */
 int start(char **env, char *av0, int *st)
 {
-	int status, j = 0, argcou, y, in = 0, re = 0, cou = 0, builtv = -1;
-	size_t i = 0;
+	int argcou, y, cou = 1, builtv = -1;
 	ssize_t x = 0;
-	pid_t child;
-	char *buf = NULL, **args = NULL, *buf2 = NULL, buf4[1024], *buf7 = NULL;
-	char chd[1024];
+	char *buf = NULL, **args = NULL, *buf2 = NULL;
 
 	while (1)
 	{
@@ -105,9 +101,7 @@ int start(char **env, char *av0, int *st)
 		builtv = built(y, &args, &buf2, st, &cou, av0);
 		if (builtv == 26)
 			continue;
-		if (builtv != -1)
-			return (builtv);
-		exo(&buf2, args, y, env, st);
+		exo(&buf2, args, env, st);
 	}
 }
 /**
@@ -121,6 +115,7 @@ int main(int ac, char **av, char **env)
 {
 	int status = 0;
 
+	(void)ac;
 	status = start(env, av[0], &status);
 	exit(status);
 }
