@@ -2,7 +2,7 @@
 /**
 *args_ar - creat an array of arguments
 *@argcou : number  of arguments
-*@buf : buffer containing arguments
+*@buf : buffer containing the arguments
 *@args : array to allocate memory to
 *Return: 0 on failuer 1 on success
 */

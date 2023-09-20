@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-*_read - get line from termenal or file
+*_read - get line from terminal or file
 *@buf : buffer to store input
 *Return: -1 on failure 0 on success
 */

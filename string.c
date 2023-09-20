@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
-* _strcpy - check if charcter is an alphabet
+* _strcpy - checks if charcter is an alphabet
 * @dest : pointer argument
 * @src : pointer argument
 * Return: 1 if alphabet and 0 otherwise

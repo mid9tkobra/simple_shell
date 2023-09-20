@@ -2,7 +2,7 @@
 /**
 *sup - support for _check
 *@buf3 : buffer containing absolute path
-*@re : pointer to buffer containing absolute path
+*@re : pointer to buffer containing the absolute path
 *@buf : executable name
 *Return: status
 */

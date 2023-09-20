@@ -16,7 +16,7 @@ void sup_free(char ***args, char **buf)
 *built - local shell built ins
 *@y : status of input
 *@args : arguments
-*@buf : buffer containig command
+*@buf : buffer containing command
 *@st : status of exe
 *@cou : error count
 *@av0: no need to define
