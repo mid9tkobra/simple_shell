@@ -56,7 +56,6 @@ int set_unset(char ***args, int *st, int n, char **buf)
 		sup_free(args, buf);
 		return (1);
 	}
-	sup_free(args, buf);
 	return (0);
 }
 /**
